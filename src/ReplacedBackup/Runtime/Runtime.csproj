@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../NuGet.Config</RestoreConfigFile>
+    <RuntimeReferenceDirectory>C:/Program Files/dotnet/shared/Microsoft.NETCore.App/6.0.36</RuntimeReferenceDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json"><HintPath>../../../MelonLoader/net6/Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="$(RuntimeReferenceDirectory)/System.Security.Cryptography.Algorithms.dll;$(RuntimeReferenceDirectory)/System.Security.Cryptography.Primitives.dll"><Private>false</Private></Reference>
+    <Compile Include="ReplacedBackup.cs" />
+    <Reference Include="$(RuntimeReferenceDirectory)/System.Private.CoreLib.dll;$(RuntimeReferenceDirectory)/System.Runtime.dll;$(RuntimeReferenceDirectory)/System.Console.dll;$(RuntimeReferenceDirectory)/System.Collections.dll;$(RuntimeReferenceDirectory)/System.IO.FileSystem.dll;$(RuntimeReferenceDirectory)/System.Runtime.Extensions.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

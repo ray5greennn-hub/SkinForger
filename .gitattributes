@@ -1,0 +1,20 @@
+# 文本文件统一按 LF 存进仓库，签出时按本机习惯
+* text=auto
+
+# 明确几类，免得被当成二进制
+*.cs    text diff=csharp
+*.csproj text
+*.py    text
+*.md    text
+*.txt   text
+*.json  text
+*.config text
+
+# 二进制
+*.png   binary
+*.dll   binary
+*.exe   binary
+*.ttf   binary
+
+# 教程 PDF
+*.pdf   binary

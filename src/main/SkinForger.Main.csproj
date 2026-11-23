@@ -1,0 +1,113 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    SkinForger.Main (authored) — 2026-11-17.
+
+    The replacement for SkinForger.Melon.dll, written as source. The old Main is a chain of Cecil
+    transformations with no buildable source (SOURCE-STATUS.md) and still carries the expression of the
+    GPL-3.0 upstream MuseDashSkinChanger. This project replaces it with authored code.
+
+    Clean-room rule (SF日志\SF切割SkinChanger计划.md, part 6): nothing here is transcribed from
+    reference\decompiled-current-mod\ or from the upstream Back.cs / Front.cs. The sources are the game's
+    own API, the behaviour contracts SkinForger.Core's modules already document, and SF日志.
+
+    Drop-in rule: the public surface keeps the type name SkinForger.SkinForgerMod and the method
+    signatures listed in CONTRACT.md, because Core binds to them by name (AccessTools.TypeByName).
+    Core therefore needs no changes when Main is swapped.
+
+    Pure\ holds files with no Unity / MelonLoader types, so Tests\ can compile and check them outside
+    the game (the convention SkinForger.Core already uses).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <!-- The name is load-bearing: SkinForger.Core looks for an assembly called exactly
+         "SkinForger.Melon" that references SkinForger.Core, and starts NOTHING otherwise
+         (SkinForgerCoreMod.IsMainBound). -->
+    <AssemblyName>SkinForger.Melon</AssemblyName>
+    <RootNamespace>SkinForger</RootNamespace>
+    <!-- Shared runtime sources are compiled BOTH into this authored Main and into the old Cecil
+         pipeline, which post-processes them (PreviewSharedCore/Build renames and wraps methods).
+         Where the authored build needs a shape that pipeline would produce by rewriting, the source
+         says so behind this constant, so the old build keeps working until it is retired. -->
+    <DefineConstants>$(DefineConstants);SKINFORGER_AUTHORED_MAIN</DefineConstants>
+    <Version>0.1.0</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseAppHost>false</UseAppHost>
+    <DebugType>none</DebugType>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <NoWarn>$(NoWarn);NETSDK1138</NoWarn>
+    <!-- 仓库克隆在游戏文件夹里时，游戏根目录是上三层。
+         放在别处编译就自己指过去：dotnet build -p:GameRoot="C:\...\Muse Dash\" -->
+    <GameRoot Condition=" '$(GameRoot)' == '' ">$(MSBuildThisFileDirectory)..\..\..\</GameRoot>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)\..\NuGet.Config</RestoreConfigFile>
+    <OutputPath>Build\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--
+      Aliases, so the runtime sources compile here UNCHANGED. They were written to be embedded into
+      Main, where these names resolved differently: CharacterInfo also exists in UnityEngine, and
+      Il2CppImageConversionManager is an older Il2CppInterop name for UnityEngine.ImageConversion.
+      Fixing it here rather than in their source keeps those files byte-identical to the ones the
+      old build uses, which is what makes a side-by-side comparison meaningful.
+    -->
+    <Using Include="Il2CppAssets.Scripts.Database.CharacterInfo" Alias="CharacterInfo" />
+    <Using Include="UnityEngine.ImageConversion" Alias="Il2CppImageConversionManager" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--
+      The runtime types the old Main carries, compiled in from their own authored source instead of
+      being embedded with Cecil. Eleven of the twelve already existed (CONTRACT.md section 3); the
+      twelfth, ReplacementExecutionContext, is written in Unity\ReplacementExecution.cs.
+    -->
+    <Compile Include="..\PreviewMvp\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\CharacterMeshGeometry\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\ReplacedBackup\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\DumpSystemFix\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\AtlasOwnershipFix\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\SelectionThumbnail\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\CustomLoadingPic\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\FpsLimiterPatch\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\PreviewSharedCore\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+    <Compile Include="..\AnimationAmplitudePatch\Runtime\**\*.cs" Exclude="..\**\obj\**;..\**\bin\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Analysis\ holds the offline contract checkers (their own projects), not Main's code. -->
+    <Compile Remove="Build\**;bin\**;obj\**;Tests\**;Analysis\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MelonLoader"><HintPath>$(GameRoot)MelonLoader\net6\MelonLoader.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(GameRoot)MelonLoader\net6\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(GameRoot)MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem.Core"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppspine-unity"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2Cppspine-unity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppPeroTools2"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppDOTween"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppDOTween.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppPeroTools2.Resources"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.Resources.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSirenix.Serialization"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>$(GameRoot)MelonLoader\net6\Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AnimationModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppFancyScrollView"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppFancyScrollView.dll</HintPath><Private>false</Private></Reference>
+    <!-- Core must be referenced, not just resolved at runtime: that reference is what Core checks. -->
+    <Reference Include="SkinForger.Core"><HintPath>$(GameRoot)Mods\SkinForger\SkinForger.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppNewtonsoft.Json"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppNewtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextCoreModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.InputSystem"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppRewired_Core"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>SkinForger.PreviewOriginalContractRestore.Runtime</AssemblyName>
+    <Version>1.0.0.0</Version>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../../NuGet.Config</RestoreConfigFile>
+    <!-- 本机 .NET 6 运行时的参考程序集；装的版本不同就自己指过去：
+         dotnet build -p:RuntimeReferenceDirectory=".../Microsoft.NETCore.App/6.0.x" -->
+    <RuntimeReferenceDirectory Condition=" '$(RuntimeReferenceDirectory)' == '' ">C:/Program Files/dotnet/shared/Microsoft.NETCore.App/6.0.36</RuntimeReferenceDirectory>
+    <!-- 仓库克隆在游戏文件夹里时，游戏根目录是上四层 -->
+    <GameRoot Condition=" '$(GameRoot)' == '' ">$(MSBuildThisFileDirectory)../../../../</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="$(RuntimeReferenceDirectory)/System.Private.CoreLib.dll;$(RuntimeReferenceDirectory)/System.Runtime.dll;$(RuntimeReferenceDirectory)/netstandard.dll"><Private>false</Private></Reference>
+    <Reference Include="$(GameRoot)MelonLoader/net6/MelonLoader.dll;$(GameRoot)MelonLoader/net6/Il2CppInterop.Runtime.dll"><Private>false</Private></Reference>
+    <Reference Include="$(GameRoot)MelonLoader/Il2CppAssemblies/Il2Cppmscorlib.dll;$(GameRoot)MelonLoader/Il2CppAssemblies/Il2Cppspine-unity.dll"><Private>false</Private></Reference>
+    <Reference Include="$(GameRoot)MelonLoader/Il2CppAssemblies/UnityEngine.CoreModule.dll;$(GameRoot)MelonLoader/Il2CppAssemblies/UnityEngine.ImageConversionModule.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

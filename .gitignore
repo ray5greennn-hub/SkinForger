@@ -1,0 +1,27 @@
+# 编译产物
+**/bin/
+**/bin-*/
+**/obj/
+**/dist/
+**/dist-*/
+**/test-results/
+**/.build-home/
+src/core/Build/
+src/main/Build/
+src/main/Tests/Build/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.nupkg
+
+# 本机 / 编辑器
+*.user
+*.suo
+.vs/
+.idea/
+Thumbs.db
+desktop.ini
+
+# 运行时产生的东西，不要进仓库
+*.log

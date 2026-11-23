@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    SkinForger.Core: all SkinForger sidecars in one melon (2026-11-14).
+    Modules\<Name>\ holds each former sidecar's source, unchanged except that the
+    [assembly: Melon*] attributes were removed and ": MelonMod" became ": SfModule".
+    Host\ runs them in the original order (see SkinForgerCoreMod).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>SkinForger.Core</AssemblyName>
+    <RootNamespace>SkinForger.Core</RootNamespace>
+    <Version>1.0.0</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseAppHost>false</UseAppHost>
+    <DebugType>none</DebugType>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <NoWarn>$(NoWarn);NETSDK1138</NoWarn>
+    <!-- 仓库克隆在游戏文件夹里时，游戏根目录是上三层。
+         放在别处编译就自己指过去：dotnet build -p:GameRoot="C:\...\Muse Dash\" -->
+    <GameRoot Condition=" '$(GameRoot)' == '' ">$(MSBuildThisFileDirectory)..\..\..\</GameRoot>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)\..\NuGet.Config</RestoreConfigFile>
+    <OutputPath>Build\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Build\**;bin\**;obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MelonLoader"><HintPath>$(GameRoot)MelonLoader\net6\MelonLoader.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(GameRoot)MelonLoader\net6\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(GameRoot)MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem.Core"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppspine-unity"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2Cppspine-unity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppPeroTools2"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppDOTween"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppDOTween.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AnimationModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppPeroTools2.Resources"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.Resources.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSirenix.Serialization"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppNewtonsoft.Json"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppNewtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextCoreModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.InputSystem"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppRewired_Core"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GameRoot)MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

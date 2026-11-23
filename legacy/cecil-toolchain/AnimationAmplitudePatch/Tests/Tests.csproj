@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../../ReplacedBackup/NuGet.Config</RestoreConfigFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../Runtime/AnimationAmplitudeSettings.cs" Link="AnimationAmplitudeSettings.cs" />
+    <Compile Include="../Runtime/AnimationAmplitudeMath.cs" Link="AnimationAmplitudeMath.cs" />
+    <Compile Include="../Runtime/RegionScaleSettings.cs" Link="RegionScaleSettings.cs" />
+    <Reference Include="MelonLoader"><HintPath>../../../MelonLoader/net6/MelonLoader.dll</HintPath></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>../../../MelonLoader/net6/Newtonsoft.Json.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

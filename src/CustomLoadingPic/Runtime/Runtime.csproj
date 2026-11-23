@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework><DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers><RestoreConfigFile>$(MSBuildProjectDirectory)/../../ReplacedBackup/NuGet.Config</RestoreConfigFile>
+    <RuntimeReferenceDirectory>C:/Program Files/dotnet/shared/Microsoft.NETCore.App/6.0.36</RuntimeReferenceDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="$(RuntimeReferenceDirectory)/System.Private.CoreLib.dll;$(RuntimeReferenceDirectory)/System.Runtime.dll;$(RuntimeReferenceDirectory)/System.Collections.dll;$(RuntimeReferenceDirectory)/System.ObjectModel.dll;$(RuntimeReferenceDirectory)/System.Linq.Expressions.dll;$(RuntimeReferenceDirectory)/netstandard.dll"><Private>false</Private></Reference>
+    <Reference Include="../../../MelonLoader/net6/MelonLoader.dll;../../../MelonLoader/net6/0Harmony.dll;../../../MelonLoader/net6/Il2CppInterop.Runtime.dll;../../../MelonLoader/net6/Newtonsoft.Json.dll;../../../MelonLoader/net6/UnityEngine.Il2CppImageConversionManager.dll"><Private>false</Private></Reference>
+    <Reference Include="../../../MelonLoader/Il2CppAssemblies/Assembly-CSharp.dll;../../../MelonLoader/Il2CppAssemblies/Il2Cppmscorlib.dll;../../../MelonLoader/Il2CppAssemblies/UnityEngine.CoreModule.dll;../../../MelonLoader/Il2CppAssemblies/UnityEngine.UI.dll;../../../MelonLoader/Il2CppAssemblies/UnityEngine.UIModule.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

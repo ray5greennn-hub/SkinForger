@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>AtlasOwnershipFix.Runtime</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../../ReplacedBackup/NuGet.Config</RestoreConfigFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>../../../MelonLoader/Il2CppAssemblies/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppspine-unity"><HintPath>../../../MelonLoader/Il2CppAssemblies/Il2Cppspine-unity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>../../../MelonLoader/net6/Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>../../../MelonLoader/Il2CppAssemblies/Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net6.0</TargetFramework><UseAppHost>false</UseAppHost>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences><EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../NuGet.Config</RestoreConfigFile>
+    <RuntimeReferenceDirectory>C:/Program Files/dotnet/shared/Microsoft.NETCore.App/6.0.36</RuntimeReferenceDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json"><HintPath>../../../MelonLoader/net6/Newtonsoft.Json.dll</HintPath></Reference>
+    <Reference Include="$(RuntimeReferenceDirectory)/System.Private.CoreLib.dll;$(RuntimeReferenceDirectory)/System.Runtime.dll;$(RuntimeReferenceDirectory)/System.Console.dll;$(RuntimeReferenceDirectory)/System.Collections.dll;$(RuntimeReferenceDirectory)/System.IO.FileSystem.dll;$(RuntimeReferenceDirectory)/System.Runtime.Extensions.dll"><Private>false</Private></Reference>
+    <Reference Include="BackupRuntime"><HintPath>../Runtime/bin/Release/net6.0/Runtime.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "status": "PUBLICATION_CANDIDATE_NEEDS_REVIEW",
+  "developmentStartDate": "2026-09-24",
+  "currentInstalledMainDll": {
+    "installedPathForAudit": "Mods/SkinForger/SkinForger.Melon.dll",
+    "sha256": "42C1B03EC0414FACC36DB4FFDFA3E43CDCD193BED5BF2F19508A48D73758FA68",
+    "byteIdenticalPrivateArtifact": "AnimationAmplitudePatch/dist/SkinForger.Melon.json-scale.candidate.dll",
+    "artifactIncludedInCandidate": false,
+    "gameTestStatus": "GAME_TESTED_WITH_LIMITS",
+    "notes": "Development and bug logs record Preview/Gameplay validation for animation amplitude, per-image Scale, normal skin rendering, FPS protection, loading pictures, and selected compatibility paths. This is not an exhaustive all-character test matrix."
+  },
+  "milestoneSummaryWarning": "The commonly cited 2679D280 -> 0A87550A -> 2C8B60D0 -> 42C1B03E sequence omits evidenced intermediate transformations and must not be described as a direct four-step build.",
+  "stages": [
+    {
+      "date": "2026-09-26",
+      "inputSha256": "2679D280B6DB20FBEB0E2DC4F976CB78C11AEA1EE09A81C64EDBAC7C113FEE10",
+      "outputSha256": "0A87550AAB92CA5621C0D5A8041B76CA798193BE45BD0EBAF4227A75B6A227DC",
+      "tool": "tools/CurrentModPatch",
+      "purpose": "Anchor sidecar v2 and display-name patch",
+      "evidence": "Builder pins the input hash; output artifact and timestamp exist in the private archive.",
+      "validation": "OFFLINE_VERIFIED; GAME_TEST_FOR_THIS_EXACT_CANDIDATE_NOT_RECORDED",
+      "inputOrigin": "NEEDS_REVIEW"
+    },
+    {
+      "date": "2026-09-26",
+      "inputSha256": "0A87550AAB92CA5621C0D5A8041B76CA798193BE45BD0EBAF4227A75B6A227DC",
+      "outputSha256": "41F1BA46F2CDEC627AFE0FEA40E1C9E0132DB07AA73C4814509654C9FCF892C0",
+      "tool": "tools/ReleasePackager",
+      "purpose": "Release metadata/package transformation",
+      "evidence": "Packager pins the input hash; matching private output exists.",
+      "validation": "OFFLINE_VERIFIED"
+    },
+    {
+      "date": "2026-09-27",
+      "inputSha256": "41F1BA46F2CDEC627AFE0FEA40E1C9E0132DB07AA73C4814509654C9FCF892C0",
+      "outputSha256": "ECCA713898AB9EDD9B2F82CF01F91EF4A748AEFBB8C7472D11F44E620214EAFE",
+      "tool": "tools/PositionOffsetPatch",
+      "purpose": "Per-file position offset",
+      "evidence": "Builder pins 41F1BA46; ECCA7138 candidate exists and is the pinned input of ReplacedBackup.",
+      "validation": "OFFLINE_VERIFIED; NONZERO_OFFSET_GAME_TEST_STATUS_NEEDS_REVIEW"
+    },
+    {
+      "date": "2026-09-27",
+      "inputSha256": "ECCA713898AB9EDD9B2F82CF01F91EF4A748AEFBB8C7472D11F44E620214EAFE",
+      "historicalOutputs": [
+        "2D41DFBD895CCBBCB571408FC8C50ACE9AE18C55F71716136871E209001CAE60",
+        "BC69D658D1975970ABDBFB65824D90D3035668311E2376F3537BAD1C8BDBFCBE"
+      ],
+      "tool": "tools/ReplacedBackup",
+      "purpose": "Incremental per-file backup",
+      "evidence": "Builder pins ECCA7138. Private history states the earlier full-snapshot design was superseded by the incremental implementation.",
+      "validation": "OFFLINE_TESTED; LATER LIVE_LOGS_CONFIRM_BASELINE_CONTINUITY",
+      "exactSourceRevisionForEachHistoricalOutput": "NEEDS_REVIEW"
+    },
+    {
+      "date": "2026-09-27",
+      "inputSha256": "BC69D658D1975970ABDBFB65824D90D3035668311E2376F3537BAD1C8BDBFCBE",
+      "historicalOutputs": [
+        "88F3E5A12B48E37D92E9B9C5C206D411DFD52CFDE851C298A518B5A405219235",
+        "97DC2310EAB292FE47C69A86BC5D830A91CFFE47B3961EC55C2F5EC8443E8073",
+        "953355DA37236001DB666D1DD614576CC8608F5CFDF1BACEF8A333E19C1AE1B7",
+        "FC488CDEAA2B3ECE98C5BD12D07D3B31B9FD1321E27D4AB78A8A95511C023527",
+        "4CFCA040FE6A69A20AD1DB3C50EE6B39250941C8A46273AC3E28BB87E2346EB5",
+        "ABA08C7839F2C81FF2331B85947D22BBDD7974B238412C92EF3F605B41A77406",
+        "2699EB0EF2EC573AE9391B640BF25D05B0AC661FCCD8404EF6A243CB457B117A"
+      ],
+      "tool": "tools/CustomLoadingPic",
+      "purpose": "Loading-picture support and successive layout/configuration corrections",
+      "evidence": "Private artifacts, dated test reports, and sanitized development logs establish successive iterations.",
+      "validation": "OFFLINE_AND_GAME_TESTED_WITH_PER_STAGE_LIMITS",
+      "exactSourceRevisionForEachHistoricalOutput": "NEEDS_REVIEW"
+    },
+    {
+      "date": "2026-09-27",
+      "inputSha256": "2699EB0EF2EC573AE9391B640BF25D05B0AC661FCCD8404EF6A243CB457B117A",
+      "historicalIntermediateSha256": "B635C2A5313F2A90A5EB30174DDBA6EB19B5BA48A14E554DAC99E25BE9547912",
+      "outputSha256": "2C8B60D016D0785B45D870C7ECF73A45E14F406D40ECB4C1BB6D187AB34D346D",
+      "tool": "tools/FpsLimiterPatch",
+      "purpose": "Event-driven FPS protection",
+      "evidence": "Builder pins 2699EB0E; final test report names 2C8B60D0; private retry artifacts preserve the intermediate.",
+      "validation": "OFFLINE_AND_GAME_TESTED"
+    },
+    {
+      "date": "2026-09-28",
+      "inputSha256": "2C8B60D016D0785B45D870C7ECF73A45E14F406D40ECB4C1BB6D187AB34D346D",
+      "historicalOutputs": [
+        "B51B4EDFA66D48D9EA07CD07CB962D5699764E4F06D6B31EDA5A0E8873BB0EC7",
+        "E96991CE039BE86FB6D5AD72FAD6C8A34E7224214B08D10367BFD457138042CF",
+        "354DAA1B7BF4DEAECD6654163ECCC774A2F61E13D701311B328ACCA0A6AB397B",
+        "42C1B03EC0414FACC36DB4FFDFA3E43CDCD193BED5BF2F19508A48D73758FA68"
+      ],
+      "tool": "tools/AnimationAmplitudePatch",
+      "purpose": "Animation movement amplitude, Scale/Shear guard, zero semantics, and per-image display Scale",
+      "evidence": "Builder pins 2C8B60D0; private artifacts and logs identify successive outputs; final output matches the installed DLL.",
+      "validation": "OFFLINE_AND_GAME_TESTED_FOR_DOCUMENTED_WING_L_AND_SCALE_CASES",
+      "exactSourceRevisionForEachHistoricalOutput": "NEEDS_REVIEW"
+    }
+  ],
+  "knownDependencies": [
+    { "name": ".NET SDK", "versions": ["6.0.36 runtime/target", "10.0.401 build/test SDK on audited machine"], "redistributed": false },
+    { "name": "Mono.Cecil", "version": "0.11.6.0", "sha256": "831DCA77470D85CB6FFBEA3072DAA7A3DF5B7C9FCFD9C3F43674A9BE99D4BFCF", "redistributed": false },
+    { "name": "MelonLoader", "version": "0.7.4.2586 / 0.7.4-ci.2586 Open-Beta", "sha256": "61BEBE7ACED44562BA16C86FF97D3BBE58671CF87940C44059AE6DFD74B79932", "redistributed": false },
+    { "name": "Muse Dash game and IL2CPP interop assemblies", "version": "NEEDS_REVIEW", "redistributed": false },
+    { "name": "Unity assemblies", "version": "NEEDS_REVIEW", "redistributed": false }
+  ],
+  "openQuestions": [
+    "Authored/preferred source and provenance for the 2679D280 input DLL; existing evidence cannot prove a one-to-one source correspondence",
+    "Exact source revision corresponding to each historical candidate produced while scripts were evolving",
+    "Clean build instructions on a machine without private absolute paths",
+    "Final maintainer legal attribution and copyright notice",
+    "Whether the separately built TouhouCompatV2 add-on should be published alongside the main release"
+  ]
+}

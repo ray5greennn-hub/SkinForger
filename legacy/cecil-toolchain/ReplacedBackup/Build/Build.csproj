@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><UseAppHost>false</UseAppHost>
+    <RestoreConfigFile>$(MSBuildProjectDirectory)/../NuGet.Config</RestoreConfigFile>
+  </PropertyGroup>
+  <ItemGroup><Reference Include="Mono.Cecil"><HintPath>../../../MelonLoader/net6/Mono.Cecil.dll</HintPath></Reference></ItemGroup>
+</Project>

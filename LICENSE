@@ -1,0 +1,156 @@
+SkinForger 使用条款
+SkinForger Terms of Use
+
+源码公开 / Source-Available
+版本 1.0 ・ 2026-11-20
+
+Copyright (c) 2026 雷茂教主Ray5Green (Ray5Green)
+
+--------------------------------------------------------------------------------
+这不是一份标准许可证，也不是什么新发明的许可证类型。
+--------------------------------------------------------------------------------
+
+它只是**这个项目自己写的使用条款**，用大白话写成，没有别的项目在用它，
+也不打算让别的项目用。请不要把它当成一个可以套用的通用许可证。
+
+要归类的话，它属于业界说的「**源码公开（source-available）**」：
+源码公开、可自由取用，但保留了一条限制，所以按开源促进会（OSI）的定义
+**不算「开源许可证」**。说「源码公开」是准确的，说「开源」不准确。
+
+下面第一层（代码随便拿）的宽松程度基本等同 MIT 许可证；
+第二层那一条限制，才是它不能叫「开源」的原因。
+
+这份条款是作者自己写的，用大白话表达意图，不是律师文书。
+This text was written by the author in plain language to state intent.
+
+================================================================================
+中文（以中文本为准）
+================================================================================
+
+这份许可证分两层：**代码可以随便拿**，**但 SkinForger 这个成品不能搬到盗版平台上**。
+
+--------------------------------------------------------------------------------
+第一层　代码、做法和文档 —— 随便用，没有任何条件
+--------------------------------------------------------------------------------
+
+本项目的源代码、其中的算法与做法、以及 `docs/` 下的全部开发文档，
+你都可以自由地阅读、复制、修改、学习、讲解、搬进自己的项目，
+**用于任何目的，包括商业用途**。
+
+不需要署名，不需要开源你自己的项目，不需要告诉我，也不需要付钱。
+
+特别地，扩框机制（见 `docs/expansion/扩框机制说明.txt`）本来就是写出来给人看的。拿去用。
+
+> 这一层没有任何附加条件。如果你只是想用这里的技术，看到这里就够了。
+
+--------------------------------------------------------------------------------
+第二层　SkinForger 这个成品 —— 一个条件
+--------------------------------------------------------------------------------
+
+当你分发的东西**就是 SkinForger**，或者是**一眼能认出是 SkinForger 的修改版**
+（换了名字也算）时，适用下面这一条：
+
+**唯一的条件：不得把它用于、适配到、或分发给非 Steam 正版的《Muse Dash（喵斯快跑）》。**
+
+包括但不限于：破解版、盗版、未经授权的移植版、未经授权的移动端或主机端版本，
+以及任何未经发行商授权的分发渠道。
+
+「Steam 正版」指通过 Valve 的 Steam 商店取得、并通过 Steam 运行的《Muse Dash》副本。
+
+如果你想为别的平台做，**可以来问我**。同意就是同意，不同意就是不同意。
+联系方式见项目主页。
+
+除此之外没有别的限制：你可以自由地使用、复制、修改、合并、发布、分发、再授权和出售，
+**包括商业用途**。
+
+唯一的手续：分发 SkinForger 或其修改版时，请把这份许可证一起带上，
+好让下一个人也知道上面这一条。（只是搬代码片段的话，连这个都不需要——见第一层。）
+
+--------------------------------------------------------------------------------
+第三层　不保证，不负责
+--------------------------------------------------------------------------------
+
+**本软件按「现状」提供，不附带任何形式的保证**，无论明示或默示，
+包括但不限于适销性、特定用途适用性和不侵权的保证。
+
+**作者不对任何后果负责。** 你用了这份代码、或用了 SkinForger，
+无论出现什么问题——游戏损坏、存档丢失、账号受影响、数据损毁、经济损失，
+或任何其他直接或间接的损害——**都由你自己承担**。
+
+你修改之后出的问题，更是你自己的问题，与作者无关。
+
+你使用本软件，即表示你接受这一点。
+
+--------------------------------------------------------------------------------
+第四层　不属于这份许可证的东西
+--------------------------------------------------------------------------------
+
+**玩家做的皮肤**（PNG、JSON、音频等）属于各自的作者，不属于本项目，
+也不受这份许可证约束。分发别人做的皮肤前，请先取得那位作者的同意。
+
+**游戏本身的素材**不属于本项目，也不随本项目分发。
+
+**上游项目**：SkinForger 最初是 MuseDashSkinChanger（原作者 BustR75 及贡献者，GPL-3.0）
+的修改版。那部分代码已于 2026-11-17 起全部重写移除，现在的 SkinForger 不含上游代码
+（证据见 `NOTICE.md`）。即便如此，这个项目能起步仍然多亏了他们公开的代码，谢谢。
+
+================================================================================
+English (the Chinese text governs if the two differ)
+================================================================================
+
+These terms have two layers: **take the code freely**, but **do not put SkinForger
+itself on pirated platforms**.
+
+--- Layer 1: the code, the techniques and the documentation — no conditions ---
+
+You may read, copy, modify, learn from, teach, and reuse this project's source
+code, the algorithms and techniques in it, and all of the development notes under
+`docs/`, for ANY purpose, INCLUDING COMMERCIAL ONES.
+
+No attribution required. No obligation to open your own project. No need to ask,
+and nothing to pay. The canvas-expansion mechanism in particular was written down
+to be read — please take it.
+
+--- Layer 2: SkinForger as a product — one condition ---
+
+When what you distribute IS SkinForger, or is recognisably a modified SkinForger
+(renaming it does not change that), then:
+
+  THE ONE CONDITION: it may not be used for, adapted to, or distributed for any
+  copy of Muse Dash that is not a legitimate Steam copy.
+
+This includes cracked or pirated builds, unauthorised ports, unauthorised mobile
+or console versions, and any distribution channel not authorised by the publisher.
+"Legitimate Steam copy" means a copy of Muse Dash obtained from Valve's Steam
+store and run through Steam.
+
+If you want to support another platform, ASK ME. Yes means yes; no means no.
+Contact details are on the project page.
+
+Otherwise you may use, copy, modify, merge, publish, distribute, sublicense and
+sell SkinForger, including commercially. The only formality: when you distribute
+SkinForger or a modified SkinForger, include this licence so the next person also
+learns of the condition above. (Lifting a snippet needs not even that — layer 1.)
+
+--- Layer 3: no warranty, no liability ---
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+THE AUTHOR IS NOT LIABLE FOR ANYTHING. Whatever happens because you used this code
+or used SkinForger — a broken game, lost saves, an affected account, corrupted
+data, financial loss, or any other direct or indirect damage — IS YOUR OWN
+RESPONSIBILITY. Problems in your modified version are especially your own. By
+using this software you accept that.
+
+--- Layer 4: what this licence does not cover ---
+
+Skins made by players (PNG, JSON, audio) belong to their authors, are not part of
+this project, and are not covered here. Ask that author before redistributing
+their skin. The game's own assets are not part of this project either.
+
+Upstream: SkinForger began as a modified MuseDashSkinChanger (BustR75 and
+contributors, GPL-3.0). That code was rewritten and removed from 2026-11-17
+onwards and is no longer present (evidence in `NOTICE.md`). It is still thanks to
+their open code that this project could start at all — thank you.
