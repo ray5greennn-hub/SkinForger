@@ -70,4 +70,4 @@ SHA256 逐字节一致（2026-11-22 核对；两个工程都设了 `DebugType no
 
 ## 未完成
 
-见 `FINAL-PRE-RELEASE-AUDIT.md`。最要紧的一条：功能恢复清单还没全绿。
+见 `RELEASE-HISTORY.md` 末尾。
