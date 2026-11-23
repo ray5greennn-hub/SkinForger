@@ -25,3 +25,9 @@ The phrase `Codex port` found in intermediate assembly metadata describes part
 of the development process and is not treated here as a confirmed legal author
 or copyright-holder identity.
 
+## Tooling
+
+开发过程中使用了 AI 编码助手协助实现。设计决策、实机验证与全部美术由作者本人完成。
+
+AI coding assistants were used during development. The design decisions, the in-game
+verification and all of the artwork are the author's own.
