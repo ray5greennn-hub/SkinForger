@@ -8,7 +8,7 @@
       核验数据（连续 token 片段比对、标识符清点、构建范围、第三方依赖）见 `SOURCE-STATUS.md`，
       做法与理由见 `docs/为什么重写了Main.md`。
 - [x] **源码全部公开，且与分发物一致。** 本仓库 `src/` 编译出的两个 DLL 与正在分发的文件
-      **SHA256 逐字节一致**：`SkinForger.Core.dll` = `D7AFF324…`、`SkinForger.Melon.dll` = `88B09082…`
+      **SHA256 逐字节一致**：`SkinForger.Core.dll` = `D7AFF324…`、`SkinForger.Melon.dll` = `BCC06E08…`
       （2026-11-22 核对）。编译步骤见 `docs/BUILD.md`。
 - [x] **分发物清单明确**：`SOURCE-STATUS.md` 列出每个文件的来源，`build/DEPENDENCIES.md` 说明依赖。
       没有任何 GPL / LGPL 库被链接或打包；产品不转发任何第三方 DLL。

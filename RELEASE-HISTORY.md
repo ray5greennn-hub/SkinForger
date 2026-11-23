@@ -1,15 +1,16 @@
 # 版本历史
 
-## 还没有正式发布
+## 发布记录
 
-SkinForger 至今**没有公开发布过任何版本**。开发期间只有少量私下试玩的测试包，不算发布。
+**v1.0.0（2026-11-22）** —— 首次公开发布。源码与可安装包都在 GitHub。
+在这之前只有少量私下试玩的测试包，不算发布。
 
 ## 当前状态（2026-11-22）
 
 | 文件 | SHA256 | 来源 |
 |---|---|---|
 | `SkinForger.Core.dll` | `D7AFF324…` | `src/core/`，逐字节可复现 |
-| `SkinForger.Melon.dll` | `88B09082…` | `src/main/`，逐字节可复现 |
+| `SkinForger.Melon.dll` | `BCC06E08…` | `src/main/`，逐字节可复现 |
 | `SkinForger_MuseDashWatchdog.exe` | `88CD5E31…` | `src/Watchdog/Program.cs` |
 
 两个 DLL 都已核对：本仓库源码编译出来的结果与正在用的文件 SHA256 完全一致。
