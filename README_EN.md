@@ -192,10 +192,7 @@ right to grant any permission on a skin creator's behalf.
 
 Every pack records **the skin creator's own choice** (the Sharing checkbox at export time):
 
-- **Unchecked (default)**: the pack records "official SkinForger, on the platform the creator made it on".
-  Official SkinForger honours that record and refuses to load a pack made for another platform.
-  Be aware, though: this is a **recorded permission, not a technical lock** — a modified build can bypass it,
-  and bypassing it infringes the skin creator's rights (see the terms section).
+- **Unchecked (default)**: the pack is marked "official SkinForger only". It records the creator's permission; it is not a technical lock.
 - **Checked**: the creator agrees to any build loading it.
 
 SkinForger respects that choice. **Loading, converting, or redistributing a pack against the creator's recorded choice
