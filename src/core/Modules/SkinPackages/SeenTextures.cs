@@ -1,4 +1,4 @@
-using Il2CppSpine.Unity;
+﻿using Il2CppSpine.Unity;
 using MelonLoader;
 using SkinForger.HexieBlock;
 using UnityEngine;
@@ -262,12 +262,30 @@ internal static class SeenTextures
         return null;
     }
 
-    /// <summary>The sidecar JSON, shared with the cursor dump so both folders read the same way.</summary>
+    /// <summary>
+    /// The sidecar JSON AND the folder's manifest entry, for a dump that has no <see cref="Seen"/> row of
+    /// its own: the cursor and a picture loaded by name. Both of those wrote only the sidecar until
+    /// 2026-11-22, so Images\Cursor never had a manifest.json at all and the pictures loaded by name were
+    /// missing from the one in Images\Other — a repeated dump could not fix it, because nothing on that
+    /// path ever wrote the file. The manifest is metadata about the game's picture, not artwork, so it is
+    /// re-noted on every press even when the PNG itself is kept.
+    /// </summary>
     internal static string WriteSidecarFor(string png, int width, int height, string source, string kind)
     {
-        var seen = new Seen { Name = Path.GetFileNameWithoutExtension(png), W = width, H = height, Owner = source };
-        return WriteSidecar(Path.GetDirectoryName(png)!, Path.GetFileNameWithoutExtension(png), seen);
+        string folder = Path.GetDirectoryName(png)!;
+        string stem = Path.GetFileNameWithoutExtension(png);
+        var seen = new Seen { Name = stem, W = width, H = height, Owner = source, Kind = KindOf(kind) };
+        string sidecar = WriteSidecar(folder, stem, seen);
+        Manifest.Note(folder, Path.GetFileName(png), seen);
+        return sidecar;
     }
+
+    /// <summary>
+    /// The <see cref="Kind"/> a caller names in words. Until 2026-11-22 the name was accepted and then
+    /// dropped, which is why every cursor and by-name sidecar says "Spine" — the enum's first value.
+    /// </summary>
+    private static Kind KindOf(string kind) =>
+        Enum.TryParse(kind, ignoreCase: true, out Kind parsed) ? parsed : Kind.UI;
 
     /// <summary>
     /// The costume whose dump already owns this atlas, or null. A folder named after the texture under

@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace SkinForger.SkinPackages;
 
@@ -40,12 +40,21 @@ public static class SkinFolderScanner
         {
             string name = System.IO.Path.GetFileName(folder);
             if (name.StartsWith(".") || name.StartsWith("_") || name.Equals("replaced", StringComparison.OrdinalIgnoreCase) ||
-                SfSkinFormat.IsCensoredName(name))
+                NotACostume.Contains(name) || SfSkinFormat.IsCensoredName(name))
                 continue;
             result.Add(Check(folder));
         }
         return result;
     }
+
+    /// <summary>
+    /// Folders under SkinCreator\Images that are not a costume, so a costume's verdict says nothing about
+    /// them: Other (loose pictures, packed as their own section of a .sfskin) and Cursor (dump only). Their
+    /// manifest.json lists "pictures", not "regions", so without this they were judged as a broken skin
+    /// folder -- Other already read "manifest.json has no regions", and Cursor joined it on 2026-11-22 when
+    /// the cursor dump started writing a manifest of its own.
+    /// </summary>
+    private static readonly HashSet<string> NotACostume = new(StringComparer.OrdinalIgnoreCase) { "Other", "Cursor" };
 
     public static SkinFolderStatus Check(string folder)
     {

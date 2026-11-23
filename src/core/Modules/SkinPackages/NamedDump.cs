@@ -1,4 +1,4 @@
-using Il2CppPeroTools2.Resources;
+﻿using Il2CppPeroTools2.Resources;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.UI;
@@ -142,9 +142,13 @@ internal static class NamedDump
         string folder = Path.Combine(SkinForgerPaths.Creator, SeenTextures.OtherFolder);
         Directory.CreateDirectory(folder);
         string file = Path.Combine(folder, Safe(name) + ".png");
-        if (File.Exists(file)) { kept++; return; }
-        if (!CursorDump.WriteTexture(texture, file)) return;
+        bool had = File.Exists(file);
+        if (!had && !CursorDump.WriteTexture(texture, file)) return;
+        // Also when the PNG is kept: the sidecar is kept too, but the folder's manifest.json is metadata
+        // about the game's picture, so a second press is how a picture dumped before this was wired up
+        // (2026-11-22) gets its line (2026-11-22: five pictures loaded by name were missing from it).
         SeenTextures.WriteSidecarFor(file, texture.width, texture.height, "loaded by name", "UI");
+        if (had) { kept++; return; }
         written++;
         MelonLogger.Msg($"{Prefix} wrote {Path.GetFileName(file)} ({texture.width}x{texture.height})");
     }
