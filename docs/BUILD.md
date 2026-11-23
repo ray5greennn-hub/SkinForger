@@ -10,6 +10,8 @@
 | 一份装好 MelonLoader 的 Muse Dash | 编译要引用游戏自己的 IL2CPP 程序集，**仓库里不带这些 DLL** |
 | Python 3 | 只有离线自检工具要用（`src/main/Analysis/*.py`） |
 
+依赖清单见 [`DEPENDENCIES.md`](DEPENDENCIES.md)。
+
 **没有任何 NuGet 包。** 两个主工程的 `NuGet.Config` 把包源清空了（`<clear />`），
 所有引用都是本机 MelonLoader 目录里已有的 DLL，而且都是 `<Private>false</Private>` —— 不会被拷进输出。
 

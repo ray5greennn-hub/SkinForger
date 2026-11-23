@@ -1,9 +1,11 @@
-# 编译产物
+# ── 编译产物 ──────────────────────────────────────────────
 **/bin/
 **/bin-*/
 **/obj/
 **/dist/
 **/dist-*/
+**/publish/
+**/artifacts/
 **/test-results/
 **/.build-home/
 src/core/Build/
@@ -14,14 +16,42 @@ src/main/Tests/Build/
 *.pdb
 *.cache
 *.nupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
 
-# 本机 / 编辑器
+# ── 本机 / 编辑器 ─────────────────────────────────────────
 *.user
 *.suo
+*.userprefs
+*.swp
+*~
 .vs/
+.vscode/
 .idea/
 Thumbs.db
 desktop.ini
+.DS_Store
 
-# 运行时产生的东西，不要进仓库
+# ── 开发助手的本地文件，不进仓库 ──────────────────────────
+.claude/
+.cursor/
+.aider*
+CLAUDE.md
+AGENTS.md
+
+# ── 本机工作目录（仓库放在游戏文件夹里时会冒出来的东西）──
+Backups/
+DeploymentBackups/
+TestVersions/
+Mods/
+UserData/
+Skins/
+*.sfskin
+*.zip
+*.7z
+*.rar
+
+# ── 运行时产生的东西 ──────────────────────────────────────
 *.log
